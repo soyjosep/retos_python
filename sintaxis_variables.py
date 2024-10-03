@@ -45,5 +45,5 @@ cadena_texto = "Hola, soy una cadena de texto"  # Tipo cadena de texto (str)
 otra_cadena = "Otra cadena de ejemplo"  # Otra cadena de texto
 
 # Imprimiendo el mensaje solicitado
-print(f"¡Hola, Python!")  # Utilizamos una f-string para mayor flexibilidad
+print("¡Hola, Python!")  # Utilizamos una f-string para mayor flexibilidad
 
