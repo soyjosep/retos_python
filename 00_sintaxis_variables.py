@@ -16,7 +16,7 @@ EJERCICIO:
   del lenguaje (cadenas de texto, enteros, booleanos...).
 - Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
 ¿Fácil? No te preocupes, recuerda que esta es una ruta de estudio y
-debemos comenzar por el principio.   
+debemos comenzar por el principio.
 """
 
 # https://python.org
@@ -45,4 +45,4 @@ cadena_texto = "Hola, soy una cadena de texto"  # Tipo cadena de texto (str)
 otra_cadena = "Otra cadena de ejemplo"  # Otra cadena de texto
 
 # Imprimiendo el mensaje solicitado
-print("¡Hola, Python!")  
+print("¡Hola, Python!")
