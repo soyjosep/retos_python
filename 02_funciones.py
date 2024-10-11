@@ -43,6 +43,6 @@ def args_greet(greet, name):
 args_greet("Hi", "Joseph")
 args_greet(name="Joseph", greet="Hi, ")
 
-# 
+# Con un argumento predeterminado
 
 
