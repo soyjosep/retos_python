@@ -17,31 +17,30 @@ Crea una función que reciba dos parámetros de tipo cadena de texto y retorne u
   - La función retorna el número de veces que se ha impreso el número en lugar de los textos.
 Presta especial atención a la sintaxis que debes utilizar en cada uno de los casos.
 """
-
 """
 Funciones definidas por el usuario
 """
 
-# Simple
+# Sin parámetros ni retorno
 def greet():
-    print("hola python")
+    print("Hola Python")
 greet()
 
 # Con retorno
 def return_greet():
-    return "Hola python"
-print(return_greet)
+    return "Hola Python"
+print(return_greet())
 
 # Con un argumento
 def arg_greet(name):
     print(f"Hola, {name}")
 arg_greet("Joseph")
 
-# Con argumentos
+# Con varios argumentos
 def args_greet(greet, name):
     print(f"{greet}, {name}")
 args_greet("Hi", "Joseph")
-args_greet(name="Joseph", greet="Hi, ")
+args_greet(name="Joseph", greet="Hi")
 
 # Con un argumento predeterminado
 def default_arg_greet(name="Python"):
@@ -49,10 +48,10 @@ def default_arg_greet(name="Python"):
 default_arg_greet("Joseph")
 default_arg_greet()
 
-# Con argumentos y return
+# Con varios argumentos y retorno
 def return_args_greet(greet, name):
     return f"{greet}, {name}"
-print(return_args_greet("hi", "Joseph"))
+print(return_args_greet("Hi", "Joseph"))
 
 # Con retorno de varios valores
 def multiple_return_greet():
@@ -72,23 +71,24 @@ def variable_key_arg_greet(**names):
     for key, value in names.items():
         print(f"Hola, {value} ({key})")
 variable_key_arg_greet(
-    lamguage="Python",
+    language="Python",
     name="Joseph",
     alias="Joseph Code",
-    age= 34)
+    age=34
+)
 
 """
-Funciones dentro de funciones  
+Funciones dentro de funciones
 """
 
 def outer_function():
     def inner_function():
-        print("Función interna: Hola python!")
+        print("Función interna: ¡Hola Python!")
     inner_function()
 outer_function()
 
 """
-Funciones del lenguaje(built-in)
+Funciones del lenguaje (built-in)
 """
 
 print(len("JosephCode"))
@@ -104,6 +104,27 @@ def hello_python():
     local_var = "Hola"
     print(f"{local_var}, {global_var}")
 print(global_var)
-# print(local_var) No se puede acceder desde fuera de la función
+# print(local_var) Esto daría un error ya que no se puede acceder a la variable local desde fuera de la función
 hello_python()
 
+"""
+Dificultad extra
+"""
+
+def print_numbers(text_1, text_2) -> int:
+    count = 0
+    for number in range(1, 101):
+        if number % 3 == 0 and number % 5 == 0:
+            print(text_1 + text_2)
+        elif number % 3 == 0:
+            print(text_1)
+        elif number % 5 == 0:
+            print(text_2)
+        else:
+            print(number)
+            count += 1
+    return count
+
+# Imprimir el número de veces que se imprimen números en lugar de textos
+result = print_numbers("Fizz", "Buzz")
+print(f"Se imprimieron números en lugar de texto {result} veces.")
