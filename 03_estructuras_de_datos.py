@@ -14,3 +14,23 @@ Crea una agenda de contactos por terminal.
   de 11 dígitos (o el número de dígitos que quieras).
 - También se debe proponer una operación de finalización del programa.
 """
+
+# Listas
+
+my_list = ["Joseph", "Black", "Wolfy", "Visionos"]
+print(my_list)
+my_list.append("Castor") # Inserción
+print(my_list)
+my_list.remove("Visionos") # Eliminación
+print(my_list)
+print(my_list[3]) # Acceso
+my_list[3] = "Temple" # Actualización
+print(my_list)
+my_list.sort() # Ordenación
+print(my_list)
+print(type(my_list))
+
+# Tuplas
+
+my_tuple = ("Brais", "Moure", "@mouredev", 36)
+
