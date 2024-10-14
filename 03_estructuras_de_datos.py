@@ -32,5 +32,12 @@ print(type(my_list))
 
 # Tuplas
 
-my_tuple = ("Brais", "Moure", "@mouredev", 36)
+my_tuple = ("Brais", "Moure", "@mouredev", "36")
+print(my_tuple[1]) # Acceso
+print(my_tuple[3])
+my_tuple = tuple(sorted(my_tuple)) # Ordenación
+print(my_tuple)
+print(type(my_tuple))
+
+# Sets
 
