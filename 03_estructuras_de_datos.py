@@ -75,51 +75,88 @@ Extra
 """
 
 def my_agenda():
-
     agenda = {}
 
-    def insert_contact(name):
-        phone = input("Introduce el teléfono del contacto: ")
-        if phone.isdigit() and 6 <= len(phone) <= 11:
-            agenda[name] = phone
-        else:
-            print("Debes introducir un número de teléfono de 6 a 11 dígitos.")
+    def is_valid_phone(phone):
+        """Valida que el teléfono tenga entre 6 y 11 dígitos y sea numérico."""
+        return phone.isdigit() and 6 <= len(phone) <= 11
 
-    while True:
+    def get_valid_name():
+        """Solicita al usuario un nombre válido (no vacío)."""
+        while True:
+            name = input("Introduce el nombre del contacto: ").strip()
+            if name:
+                return name
+            else:
+                print("El nombre no puede estar vacío.")
+
+    def get_valid_phone():
+        """Solicita al usuario un número de teléfono válido."""
+        while True:
+            phone = input("Introduce el teléfono del contacto (6-11 dígitos): ").strip()
+            if is_valid_phone(phone):
+                return phone
+            else:
+                print("Número de teléfono no válido. Debe tener entre 6 y 11 dígitos.")
+
+    def search_contact(name):
+        """Busca un contacto en la agenda."""
+        if name in agenda:
+            print(f"El número de teléfono de {name} es {agenda[name]}.")
+        else:
+            print(f"El contacto {name} no existe.")
+
+    def insert_contact(name):
+        """Inserta un nuevo contacto en la agenda."""
+        if name in agenda:
+            print(f"El contacto {name} ya existe.")
+        else:
+            phone = get_valid_phone()
+            agenda[name] = phone
+            print(f"Contacto {name} añadido con éxito.")
+
+    def update_contact(name):
+        """Actualiza el teléfono de un contacto existente."""
+        if name in agenda:
+            phone = get_valid_phone()
+            agenda[name] = phone
+            print(f"Contacto {name} actualizado con éxito.")
+        else:
+            print(f"El contacto {name} no existe.")
+
+    def delete_contact(name):
+        """Elimina un contacto de la agenda."""
+        if name in agenda:
+            del agenda[name]
+            print(f"Contacto {name} eliminado con éxito.")
+        else:
+            print(f"El contacto {name} no existe.")
+
+    def menu():
+        """Muestra el menú y retorna la opción seleccionada."""
         print("\n1. Buscar contacto")
         print("2. Insertar contacto")
         print("3. Actualizar contacto")
         print("4. Eliminar contacto")
         print("5. Salir")
+        return input("Selecciona una opción: ")
 
-        option = input("\nSelecciona una opción: ")
+    while True:
+        option = menu()
 
         match option:
             case "1":
-                name = input("Introduce el nombre del contacto a buscar: ").strip()
-                if name in agenda:
-                    print(f"El número de teléfono de {name} es {agenda[name]}.")
-                else:
-                    print(f"El contacto {name} no existe.")
+                name = get_valid_name()
+                search_contact(name)
             case "2":
-                name = input("Introduce el nombre del contacto: ").strip()
-                if name:
-                    insert_contact(name)
-                else:
-                    print("El nombre no puede estar vacío.")
+                name = get_valid_name()
+                insert_contact(name)
             case "3":
-                name = input("Introduce el nombre del contacto a actualizar: ").strip()
-                if name in agenda:
-                    insert_contact(name)
-                else:
-                    print(f"El contacto {name} no existe.")
+                name = get_valid_name()
+                update_contact(name)
             case "4":
-                name = input("Introduce el nombre del contacto a eliminar: ").strip()
-                if name in agenda:
-                    del agenda[name]
-                    print(f"El contacto {name} ha sido eliminado.")
-                else:
-                    print(f"El contacto {name} no existe.")
+                name = get_valid_name()
+                delete_contact(name)
             case "5":
                 print("Saliendo de la agenda.")
                 break
