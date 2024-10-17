@@ -17,6 +17,8 @@ para descubrir si son:
 Operaciones
 """
 
+
+
 s1 = 'Hola'
 s2 = 'Python'
 
@@ -106,37 +108,56 @@ print(s4.isnumeric())
 """ 
 Extra
 """
+# Programa para analizar dos palabras y verificar si son palíndromos, anagramas e isogramas
 
-def check(word1: str, word2: str):
+def es_palindromo(palabra):
+    """Verifica si una palabra es un palíndromo."""
+    palabra_limpia = ''.join(filter(str.isalnum, palabra.lower()))
+    return palabra_limpia == palabra_limpia[::-1]
 
-    # Palíndromos
-    print(f'¿{word1} es un palíndromo?: {word1 == word1[::-1]}')
-    print(f'¿{word2} es un palíndromo?: {word2 == word2[::-1]}')
+def es_anagrama(palabra1, palabra2):
+    """Verifica si dos palabras son anagramas."""
+    palabra1_limpia = sorted(filter(str.isalnum, palabra1.lower()))
+    palabra2_limpia = sorted(filter(str.isalnum, palabra2.lower()))
+    return palabra1_limpia == palabra2_limpia
 
-    # Anagramas
-    print(f'¿{word1} es anagrama de {word2}?: {sorted(word1) == sorted(word2)}')
+def es_isograma(palabra):
+    """Verifica si una palabra es un isograma."""
+    palabra_limpia = ''.join(filter(str.isalpha, palabra.lower()))
+    return len(palabra_limpia) == len(set(palabra_limpia))
 
-    # Isogramas
+def analizar_palabra(palabra):
+    """Analiza si una palabra es palíndromo e isograma."""
+    resultados = {
+        'palindromo': es_palindromo(palabra),
+        'isograma': es_isograma(palabra)
+    }
+    return resultados
 
-    def isogram(word: str) -> bool:
+def main():
+    # Solicitar las palabras al usuario
+    palabra1 = input("Ingresa la primera palabra: ")
+    palabra2 = input("Ingresa la segunda palabra: ")
 
-        word_dict = dict()
-        for character in word:
-            word_dict[character] = word_dict.get(character, 0) + 1
+    # Analizar las palabras individualmente
+    resultados_palabra1 = analizar_palabra(palabra1)
+    resultados_palabra2 = analizar_palabra(palabra2)
 
-        isogram = True
-        values = list(word_dict.values())
-        isogram_len = values[0]
-        for word_count in values:
-            if word_count != isogram_len:
-                isogram = False
-                break
-        return isogram
-    
-    print(f'¿{word1} es un isograma?: {isogram(word1)}')
-    print(f'¿{word1} es un isograma?: {isogram(word2)}')
+    # Mostrar resultados para la primera palabra
+    print(f"\nAnálisis de la palabra '{palabra1}':")
+    print("- Es un palíndromo." if resultados_palabra1['palindromo'] else "- No es un palíndromo.")
+    print("- Es un isograma." if resultados_palabra1['isograma'] else "- No es un isograma.")
 
+    # Mostrar resultados para la segunda palabra
+    print(f"\nAnálisis de la palabra '{palabra2}':")
+    print("- Es un palíndromo." if resultados_palabra2['palindromo'] else "- No es un palíndromo.")
+    print("- Es un isograma." if resultados_palabra2['isograma'] else "- No es un isograma.")
 
-check('radar', 'pythonpythonpython')
-# check("amor", 'roma')
+    # Analizar si son anagramas entre sí
+    if es_anagrama(palabra1, palabra2):
+        print(f"\nLas palabras '{palabra1}' y '{palabra2}' son anagramas.")
+    else:
+        print(f"\nLas palabras '{palabra1}' y '{palabra2}' no son anagramas.")
 
+if __name__ == "__main__":
+    main()
